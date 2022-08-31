@@ -3,10 +3,10 @@ import { methods as productController } from "./../controllers/product.controlle
 
 const router = Router();
 
-router.get("/", productController.getProduct);
-router.get("/:sku", productController.getProduct);
-router.post("/", productController.addProduct);
-router.put("/:sku", productController.updateProduct);
-router.delete("/:sku", productController.deleteProduct);
+router.get("/", productController.getProduct); // GET http://localhost:5000/api-restfull/products/
+router.get("/:sku", productController.getProduct); // GET http://localhost:5000/api-restfull/products/:sku
+router.post("/", productController.addProduct); // POST http://localhost:5000/api-restfull/products/
+router.put("/:sku", productController.updateProduct); // PUT http://localhost:5000/api-restfull/products/:sku
+router.delete("/:sku", productController.deleteProduct); // DELETE http://localhost:5000/api-restfull/products/:sku
 
 export default router;
