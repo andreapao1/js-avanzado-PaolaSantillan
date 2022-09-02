@@ -45,20 +45,20 @@ const addProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
     try{
         const {id} = req.params;
-        const {title, total_pages, author } = req.body;
-        if (title === undefined || total_pages === undefined || author === undefined){
+        const {title, total_pages, author, nationality, language, cover_url, editorial } = req.body;
+        if (id === undefined || title === undefined || total_pages === undefined || author === undefined || nationality === undefined || language === undefined || cover_url === undefined || editorial === undefined){
             res.status(400).json({message:"Bad request. Please fill all field."})
         }
-        const product = {title, total_pages, author, nationality, language, cover_url, editorial};
+        const conectBook = { title, total_pages, author, nationality, language, cover_url, editorial};
         const connection = await getConnection();
-        const result = await connection.query("UPDATE books SET ? WHERE id = ?", [product, id]);
+        const result = await connection.query("UPDATE books SET ? WHERE id = ?", [conectBook, id]);
         res.json(result)
     }catch (error){
         console.log(error);
         res.status(500);
-        res.send(error.message)
+        res.send(error.message);
     }
-}
+};
 
 const deleteProduct = async (req, res) => {
     try{
