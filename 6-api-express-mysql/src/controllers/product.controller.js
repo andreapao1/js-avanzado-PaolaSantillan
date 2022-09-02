@@ -7,7 +7,7 @@ const getProducts = async (req, res) => {
         res.json(result)
     }catch (error){
         console.log(error);
-        res.status(400);
+        res.status(500);
         res.send(error.message)
     }
 }
@@ -21,7 +21,7 @@ const getProduct = async (req, res) => {
         res.json(result)
     }catch (error){
         console.log(error);
-        res.status(400);
+        res.status(500);
         res.send(error.message)
     }
 }
@@ -32,9 +32,8 @@ const addProduct = async (req, res) => {
         if (id === undefined || title === undefined || total_pages === undefined || author === undefined || nationality === undefined || language === undefined || cover_url === undefined || editorial === undefined){
             res.status(400).json({message:"Bad request. Please fill all field."})
         }
-        const product = {id, title, total_pages, author, nationality, language, cover_url, editorial};
         const connection = await getConnection();
-        const result = await connection.query("INSERT INTO books SET = ?", product);
+        const result = await connection.query("INSERT INTO `books`(`id`, `title`, `total_pages`, `author`, `nationality`, `language`, `cover_url`, `editorial`) VALUES (?,?,?,?,?,?,?,?)", [id, title, total_pages, author, nationality, language, cover_url, editorial]);
         res.json(result)
     }catch (error){
         console.log(error);
