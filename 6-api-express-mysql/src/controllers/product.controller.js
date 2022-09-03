@@ -65,10 +65,10 @@ const deleteProduct = async (req, res) => {
         const {id} = req.params;
         const connection = await getConnection();
         const result = await connection.query("DELETE FROM books WHERE id = ?", id);
-        res.json(result)
+        res.json(result);
     }catch (error){
         console.log(error);
-        res.status(500);
+        res.status(400);
         res.send(error.message)
     }
 }
